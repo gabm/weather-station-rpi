@@ -54,7 +54,7 @@ class HTU21DDriver(object):
 		t = self._device.readU16BE(HTU21D_READ_TEMP)
 		# Scale and convert to signed value.
 		temperature = ((t / float(65536)) * 175.72 ) - 46.85
-		return t
+		return temperature
 	
 	def readRelativHumidity(self):
 		h = self._device.readU16BE(HTU21D_READ_HUMIDITY)

@@ -12,10 +12,10 @@ class Sensor(SensorBase.SensorBase):
         for entry in self._config:
             if (entry[1] == 'Enabled'):
                 if (entry[0] == 'Temperature'):
-                    meas = Measurements.Measurements(self._driver.readTempC(), 'C')
+                    meas = Measurements.Measurement(self._driver.readTempC(), 'C')
                     measurements.append(meas)
                 if (entry[0] == 'Humidity'):
-                    meas = Measurements.Measurements(self._driver.readRelativHumidity(), '%')
+                    meas = Measurements.Measurement(self._driver.readRelativHumidity(), '%')
                     measurements.append(meas)
         return measurements
 
