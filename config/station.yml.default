@@ -3,12 +3,22 @@ General:
 
 Sensors:
   HTU21D: Enabled
+  BMP085: Enabled
 
 HTU21D:
   Temperature:
-    Enabled: True
+    Enabled: False
     sensorid: 1
   Humidity:
+    Enabled: True
+    sensorid: 3
+
+BMP085:
+  SealevelPressure:
+    altitude: 100
+    Enabled: True
+    sensorid: 2
+  Temperature:
     Enabled: False
     sensorid: 0
 
