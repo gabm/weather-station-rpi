@@ -4,6 +4,7 @@ General:
 Sensors:
   HTU21D: Enabled
   BMP085: Enabled
+  MCP9808: Enabled
 
 HTU21D:
   Temperature:
@@ -22,6 +23,10 @@ BMP085:
     Enabled: False
     sensorid: 0
 
+MCP9808:
+  Temperature:
+    Enabled: True
+    sensorid: 1
 
 WebService:
   SyncURL: http://www.adelberg-online.de/weatherstation/ws/manage/measurands

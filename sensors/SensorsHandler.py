@@ -20,6 +20,12 @@ class SensorsHandler(object):
             self._sensor_list.append(device)
             print("Created Sensor: " + sensor.name())
 
+        if (sensor.name() == 'MCP9808'):
+            from sensors.drivers.MCP9808.Sensor import Sensor as MCP9808Sensor
+            device = MCP9808Sensor(sensor.options())
+            self._sensor_list.append(device)
+            print("Created Sensor: " + sensor.name())
+
     def measure(self, unit):
         measurements = list()
         for sensor in self._sensor_list:
