@@ -15,4 +15,4 @@ measurementDatabase = MeasurementDatabase(stationConfigReader.readWebserviceConf
 
 sensorHandler = SensorsHandler(stationConfigReader.readSensorConfigs())
 measurementDatabase.persistMeasurements(sensorHandler.measure('C'), stationConfigReader.readLocationID())
-#measurementDatabase.syncQueue()
+measurementDatabase.syncQueue()
