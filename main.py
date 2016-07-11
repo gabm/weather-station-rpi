@@ -24,6 +24,7 @@ def main(argv):
     if (argv[len(argv)-1] == '-s'):
         print("Simulating only - no values to database or upload")
         simOnly = True
+        del argv[-1]
 
     stationConfigReader = StationConfigReader(FilePaths.GetStationConfigFilename())
     measurementDatabase = MeasurementDatabase(stationConfigReader.readWebserviceConfig())
