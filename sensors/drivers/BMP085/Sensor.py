@@ -21,7 +21,7 @@ class Sensor(SensorBase.SensorBase):
                 return Measurement(self._driver.read_temperature(), unit, self._sensors[unit])
 
             if unit == 'Pa':
-                return Measurement(self._driver.read_sealevel_pressure(self._config["altitude"]), unit, self._sensors[unit])
+                return Measurement(self._driver.read_sealevel_pressure(self._config["SealevelPressure"]["altitude"]), unit, self._sensors[unit])
 
         return None
 
