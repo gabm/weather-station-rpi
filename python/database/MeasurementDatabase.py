@@ -8,7 +8,7 @@ class MeasurementDatabase(object):
         self._configuration = configuration
 
     def persistMeasurements(self, measurements, locationid):
-        daoMeasurement = MeasurementDAO(self._configuration["LocalDatabase"])
+        daoMeasurement = MeasurementDAO()
         for measurement in measurements:
             daoMeasurement.persistMeasurement(measurement.value(), measurement.unit(), locationid, measurement.sensorid())
             daoMeasurement.insertIntoSyncQueue()
@@ -16,8 +16,8 @@ class MeasurementDatabase(object):
         daoMeasurement.closeHandle()
 
     def syncQueue(self):
-        webservice = MeasurementWebservice(self._configuration["WebService"])
-        queueSyncer = QueueSyncer(self._configuration["LocalDatabase"])
+        webservice = MeasurementWebservice(self._configuration)
+        queueSyncer = QueueSyncer()
 
         queueSyncer.sync(webservice)
         queueSyncer.closeHandle()

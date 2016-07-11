@@ -1,7 +1,0 @@
-LocalDatabase:
-  DatabaseFile: /home/pi/station/weatherstation-maincontrolcenter/data/database/weatherstation/sqlite/var/measuranddb
-
-WebService:
-  SyncURL: http://www.adelberg-online.de/weatherstation/ws/manage/measurands
-  Username:
-  Password:

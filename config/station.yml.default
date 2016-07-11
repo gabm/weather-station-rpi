@@ -11,3 +11,9 @@ HTU21D:
   Humidity:
     Enabled: False
     sensorid: 0
+
+
+WebService:
+  SyncURL: http://www.adelberg-online.de/weatherstation/ws/manage/measurands
+  Username:
+  Password:

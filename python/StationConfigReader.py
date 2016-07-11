@@ -17,3 +17,6 @@ class StationConfigReader(object):
 
     def readLocationID(self):
         return self._cfg['General']['locationid']
+
+    def readWebserviceConfig(self):
+        return self._cfg['WebService'];

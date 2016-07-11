@@ -1,12 +1,14 @@
 import json
 from sqlite3 import connect, OperationalError
 
+import FilePaths
+
 
 class QueueSyncer:
-    def __init__(self, configuration):
+    def __init__(self):
         # sqlite connecton
         try:
-            self.conn = connect(configuration['DatabaseFile'])
+            self.conn = connect(FilePaths.GetDatabaseFilename())
             self.cursor = self.conn.cursor()
 
         except OperationalError:  # Can't locate database file
