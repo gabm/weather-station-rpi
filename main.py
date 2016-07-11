@@ -8,23 +8,31 @@ from database.MeasurementDatabase import MeasurementDatabase
 
 
 def main(argv):
+
     if not FilePaths.IsLayoutValid():
         FilePaths.InitDefaultFiles()
         print("Created default config in: " + FilePaths.GetBaseFolder())
         print("Please revise the settings and start again!")
         exit()
 
-    opts, args = getopt.getopt(argv, "u:", ["unit="])
+    if (len(argv) <= 1 or not (argv[0] == '-u' or argv[0] == "--units")):
+        print("Please specify the units to measure using '-u <unit1> <unit2>' or '--unit <unit1> <unit2>'")
+        exit()
+
 
     stationConfigReader = StationConfigReader(FilePaths.GetStationConfigFilename())
     measurementDatabase = MeasurementDatabase(stationConfigReader.readWebserviceConfig())
     sensorHandler = SensorsHandler(stationConfigReader.readSensorConfigs())
 
-    for opt, args in opts:
-        if opt in ("-u", "--unit"):
-            for arg in args:
-                measurementDatabase.persistMeasurements(sensorHandler.measure(arg), stationConfigReader.readLocationID())
-            measurementDatabase.syncQueue()
+    measuredSomething = False
+    for i in range(1, len(argv)):
+        measurements = sensorHandler.measure(argv[i])
+        if (len(measurements) > 0):
+            measurementDatabase.persistMeasurements(measurements, stationConfigReader.readLocationID())
+            measuredSomething = True
+
+    if (measuredSomething):
+        measurementDatabase.syncQueue()
 
 
 if __name__ == "__main__":
