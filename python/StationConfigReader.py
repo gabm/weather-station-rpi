@@ -1,7 +1,7 @@
 import yaml
 from sensors import SensorConfig
 
-class ConfigReader(object):
+class StationConfigReader(object):
     def __init__(self, filename):
         with open(filename, 'r') as ymlfile:
             self._cfg = yaml.load(ymlfile)
@@ -15,3 +15,5 @@ class ConfigReader(object):
         return configList
 
 
+    def readLocationID(self):
+        return self._cfg['General']['locationid']
