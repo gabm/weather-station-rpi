@@ -8,9 +8,11 @@ class StationConfigReader(object):
 
     def readSensorConfigs(self):
         configList = list()
+
         for sensor in self._cfg['Sensors']:
-            conf = SensorConfig.SensorConfig(sensor, self._cfg[sensor])
-            configList.append(conf)
+            if self._cfg['Sensors'][sensor] == "Enabled":
+                conf = SensorConfig.SensorConfig(sensor, self._cfg[sensor])
+                configList.append(conf)
         
         return configList
 
