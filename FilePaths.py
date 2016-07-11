@@ -33,7 +33,7 @@ def IsLayoutValid():
 def InitDefaultFiles():
     CreateFolders()
 
-    shutil.copy("../config/station.yml.default", GetStationConfigFilename())
+    shutil.copy("config/station.yml.default", GetStationConfigFilename())
 
     ImportDefaultDatabase()
 
