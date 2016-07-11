@@ -63,6 +63,6 @@ class HTU21DDriver(object):
 
     
 if __name__ == "__main__":
-    sensor = HTU21DDriver()
-    #print sensor.readTempC()
-    print sensor.readRelativHumidity()
+	sensor = HTU21DDriver()
+	#print sensor.readTempC()
+    #print(sensor.readRelativHumidity())

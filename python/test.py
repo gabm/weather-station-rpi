@@ -1,6 +1,6 @@
-import weather_config_reader as cfg
-from  sensors import SensorsHandler as sensors_handler
+from ConfigReader import ConfigReader
+from sensors.SensorsHandler import SensorsHandler
 
-cfg_reader = cfg.ConfigReader('../config/station.cfg')
-handler = sensors_handler.SensorsHandler(cfg_reader.parse_sensor_list())
-handler.measure()
+cfg_reader = ConfigReader('../config/station.yml')
+handler = SensorsHandler(cfg_reader.readSensorConfigs())
+handler.measure('C')

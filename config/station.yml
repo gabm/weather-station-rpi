@@ -1,0 +1,10 @@
+Sensors:
+    HTU21D: Enabled
+
+HTU21D:
+    Temperature:
+        Enabled: True
+        sensorid: 1
+    Humidity:
+        Enabled: False
+        sensorid: 0

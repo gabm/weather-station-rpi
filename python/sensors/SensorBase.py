@@ -4,4 +4,4 @@ class SensorBase(object):
     __metaclass__ = ABCMeta
     
     @abstractmethod
-    def measure(self): pass 
+    def measure(self, unit): pass

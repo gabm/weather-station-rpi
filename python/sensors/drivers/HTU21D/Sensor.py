@@ -1,21 +1,26 @@
-import HTU21DDriver
+from sensors.drivers.HTU21D.HTU21DDriver import *
 from sensors import SensorBase
-from sensors import Measurements
+from Measurements import Measurement
 
 class Sensor(SensorBase.SensorBase):
     def __init__(self, options_list):
         self._config = options_list
-        self._driver = HTU21DDriver.HTU21DDriver()
+        self._driver = HTU21DDriver()
+        self._sensors = dict()
+
+        if options_list['Temperature']['Enabled'] == True:
+            self._sensors['C'] = options_list['Temperature']['sensorid']
+
+        if options_list['Humidity']['Enabled'] == True:
+            self._sensors['Percent'] = options_list['Humidity']['sensorid']
         
-    def measure(self):
-        measurements = list()
-        for entry in self._config:
-            if (entry[1] == 'Enabled'):
-                if (entry[0] == 'Temperature'):
-                    meas = Measurements.Measurement(self._driver.readTempC(), 'C')
-                    measurements.append(meas)
-                if (entry[0] == 'Humidity'):
-                    meas = Measurements.Measurement(self._driver.readRelativHumidity(), '%')
-                    measurements.append(meas)
-        return measurements
+    def measure(self, unit):
+        if unit in self._sensors:
+            if unit == 'C':
+                return Measurement(self._driver.readTempC(), unit, self._sensors[unit])
+
+            if unit == 'Percent':
+                return Measurement(self._driver.readRelativHumidity(), unit, self._sensors[unit])
+
+        return None
 
