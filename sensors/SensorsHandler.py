@@ -10,8 +10,9 @@ class SensorsHandler(object):
         if (sensor.name() == 'HTU21D'):
             from sensors.drivers.HTU21D.Sensor import Sensor as HTU21DSensor
 
-            sensor = HTU21DSensor(sensor.options())
-            self._sensor_list.append(sensor)
+            device = HTU21DSensor(sensor.options())
+            self._sensor_list.append(device)
+            print("Created Sensor: " + sensor.name())
             
     def measure(self, unit):
         measurements = list()

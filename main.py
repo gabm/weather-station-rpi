@@ -20,6 +20,10 @@ def main(argv):
         print("Please specify the units to measure using '-u <unit1> <unit2>' or '--unit <unit1> <unit2>'")
         exit()
 
+    simOnly = False
+    if (argv[len(argv)-1] == '-s'):
+        print("Simulating only - no values to database or upload")
+        simOnly = True
 
     stationConfigReader = StationConfigReader(FilePaths.GetStationConfigFilename())
     measurementDatabase = MeasurementDatabase(stationConfigReader.readWebserviceConfig())
@@ -28,13 +32,19 @@ def main(argv):
     measuredSomething = False
     for i in range(1, len(argv)):
         measurements = sensorHandler.measure(argv[i])
-        if (len(measurements) > 0):
+        
+        if len(measurements) == 0:
+            print("Specified to measure " + argv[i] + " but nothing has been measured")
+            continue
+
+        if (not simOnly):
             measurementDatabase.persistMeasurements(measurements, stationConfigReader.readLocationID())
             measuredSomething = True
         else:
-            print("Specified to measure " + argv[i] + " but nothing has been measured")
+          for meas in measurements:
+            print("Meas: " + str(meas.value()) + meas.unit() + " from id: " + str(meas.sensorid()))
 
-    if (measuredSomething):
+    if (measuredSomething and not simOnly):
         measurementDatabase.syncQueue()
 
 

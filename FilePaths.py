@@ -50,15 +50,15 @@ def ImportDefaultDatabase():
 def CreateFolders():
     try:
         os.mkdir(GetBaseFolder())
-    except FileExistsError:
+    except OSError:
         None
 
     try:
         os.mkdir(GetStationConfigFolder())
-    except FileExistsError:
+    except OSError:
         None
 
     try:
         os.mkdir(GetDataFolder())
-    except FileExistsError:
+    except OSError:
         None
