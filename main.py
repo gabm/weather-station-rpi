@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import getopt
 import sys
 
@@ -30,6 +31,8 @@ def main(argv):
         if (len(measurements) > 0):
             measurementDatabase.persistMeasurements(measurements, stationConfigReader.readLocationID())
             measuredSomething = True
+	else:
+	    print("Specified to measure " + argv[i] + " but nothing has been measured")
 
     if (measuredSomething):
         measurementDatabase.syncQueue()

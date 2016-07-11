@@ -12,14 +12,14 @@ class Sensor(SensorBase.SensorBase):
             self._sensors['C'] = options_list['Temperature']['sensorid']
 
         if options_list['Humidity']['Enabled'] == True:
-            self._sensors['Percent'] = options_list['Humidity']['sensorid']
+            self._sensors['%'] = options_list['Humidity']['sensorid']
         
     def measure(self, unit):
         if unit in self._sensors:
             if unit == 'C':
                 return Measurement(self._driver.readTempC(), unit, self._sensors[unit])
 
-            if unit == 'Percent':
+            if unit == '%':
                 return Measurement(self._driver.readRelativHumidity(), unit, self._sensors[unit])
 
         return None
